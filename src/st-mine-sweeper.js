@@ -32,22 +32,17 @@ export default function minesweeper (matrix) {
             res[i].push(1);
         else {
             let s = 0;
-            if (i - 1 >= 0 && j - 1 >= 0)
-              s += matrix[i - 1][j - 1];
-            if (i - 1 >= 0)
-              s += matrix[i - 1][j];
-            if (i - 1 >= 0 && j + 1 < matrix[i].length)
-              s += matrix[i - 1][j + 1];
-            if (j - 1 >= 0)
-              s += matrix[i][j - 1];
-            if (j + 1 < matrix[i].length) 
-              s += matrix[i][j + 1];
-            if (i + 1 < matrix.length && j - 1 >= 0)
-              s += matrix[i + 1][j - 1];
-            if (i + 1 < matrix.length)
-              s += matrix[i + 1][j];
-            if (i + 1 < matrix.length && j + 1 < matrix[i].length)
-              s += matrix[i + 1][j + 1];
+            for (let k = i-1; k <= i+1; k++) {
+                for (let l = j-1; l <= j+1; l++) {
+                    try {
+                        if (matrix[k][l])
+                            s += matrix[k][l];
+                    }
+                    catch {
+                        continue
+                    }
+                }
+            }
             res[i].push(s);
         }
       }

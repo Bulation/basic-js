@@ -15,12 +15,5 @@ import { NotImplementedError } from '../extensions/index.js';
  *
  */
 export default function countCats(matrix) {
-    let count = 0;
-    for (let arr of matrix) {
-        for (let char of arr) {
-            if (char == '^^')
-                count++;
-        }
-    }
-    return count;
+    return matrix.flat(Infinity).filter(e => e == '^^').length;
 }
