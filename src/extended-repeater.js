@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Create a repeating string based on the given parameters
@@ -15,7 +15,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
  *
  */
-export default function repeater(str, options) {
+function repeater(str, options) {
   str = String(str);
   let add = String(options.addition);
   if (!options.separator)
@@ -29,3 +29,7 @@ export default function repeater(str, options) {
   else if (options.addition) str += add;
   return Array(options.repeatTimes).fill(str).join(`${options.separator}`)
 }
+
+module.exports = {
+  repeater
+};
