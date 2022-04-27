@@ -5,31 +5,23 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 
-class Node {
-    constructor(value) {
-        this.value = String(value);
-        this.next = null;
-    }
-}
-
-export default {
+const chainMaker = {
   head: null,
   length: 0,
-}
-const chainMaker = {
   getLength() {
     return this.length;
   },
   addLink(value) {
     if (arguments.length == 0) value = "";
     if (this.length == 0) {
-      this.head = new Node(value);
+      this.head = {val: String(value), next: null}
+      console.log(this.head);
     } else {
       let h = this.head;
       while (h.next) {
         h = h.next;
       }
-      h.next = new Node(value);
+      h.next = {val: String(value), next: null}
     }
     this.length++;
     return this;
@@ -72,22 +64,21 @@ const chainMaker = {
     while (k > 0) {
       let count = 1;
       let cur = this.head;
-      console.log(count, k, cur.value);
       while (count < k) {
         cur = cur.next;
         count++;
       }
-      this.addLink(cur.value);
+      this.addLink(cur.val);
       this.removeLink(count);
       k--;
     }
     return this;
   },
   finishChain() {
-    let print = `( ${this.head.value} )`;
+    let print = `( ${this.head.val} )`;
     let cur = this.head.next;
     while (cur) {
-      print += `~~( ${cur.value} )`;
+      print += `~~( ${cur.val} )`;
       cur = cur.next;
     }
     let j = this.length;
@@ -100,4 +91,4 @@ const chainMaker = {
 
 module.exports = {
   chainMaker
-};
+}
